@@ -44,7 +44,7 @@ socket.on('game-started', data => {
 	fit_canvas();
 });
 
-//Gets new game data and mutates gamestate
+//Gets new game data and changes gamestate
 socket.on('game-data', (data, callback) => {
 	game_state.game.self.score = data.score;
 	game_state.game.opp.score = data.opp_score;

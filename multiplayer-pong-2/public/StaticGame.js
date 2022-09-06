@@ -34,7 +34,6 @@ class Game {
 			this.ball[1] = 1;
 		}
 
-		//Ugly conditionals, but eh not familiar with javascript syntactically and it works
 		if (
 			this.ball[1] < this.players[this.player2].pos + 10 &&
 			this.ball[1] + 2 > this.players[this.player2].pos - 10 &&
