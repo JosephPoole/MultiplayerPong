@@ -3,16 +3,15 @@ var Game = require("./public/Game");
 var app = express();
 const HERTZ = 30; //Game updates per second
 const port = process.env.PORT || 80;
-var server = require("http").createServer(app).listen(port);
-console.log(port);
+var server = require("http").createServer(app);
+
 var io = require("socket.io")(server);
 const uNRegex = new RegExp("^[a-zA-Z0-9_.-]{3,}$");
 
 app.use(express.static("public"));
-//app.use(express.static(__dirname + '/node_modules'));
-//app.use(express.static(__dirname + '/public'));
-app.get('/', function(req, res, next) {
-	res.sendFile(__dirname + '/public/index.html');
+
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 //User class
@@ -72,7 +71,7 @@ io.on("connection", (socket) => {
     callback(true);
   });
 
-  //Disconnects user
+  // Disconnects user
   socket.on("disconnect", () => {
     console.log(`Client Disconnected: ${users[socket.id].username}`);
     delete users[socket.id];
@@ -174,3 +173,5 @@ setInterval(() => {
     );
   }
 }, (1 / HERTZ) * 1000);
+
+server.listen(port, () => console.log("Server listening on port 80..."));
