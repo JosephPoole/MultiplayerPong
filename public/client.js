@@ -1,6 +1,20 @@
 var host = window.location.href;
 console.log(host);
-var socket = io.connect(host);
+console.log(io);
+// var socket = io.connect(host);
+// const socketio = require('socket.io')(3000,{
+//    cors: {
+//        origins: [`http://localhost:${SOCKET_PORT_NUMBER}`, "*"],
+//        methods: ["GET", "POST"]
+//    }
+//}
+//)
+//console.log(socketio);
+const socket = io("http://localhost:80")
+console.log(socket)
+
+//const cpubttn = document.querySelector("#singleplayer")
+//cpubttn.addEventListener("click", singlePlayer)
 
 let game_state;
 
@@ -189,7 +203,7 @@ socket.on('player-left', () => {
 $('#drawing-canvas').mousemove(function (e) {
 	let mouse_pos = getMousePos(e);
 	game_state.game.self.pos =
-		(mouse_pos.y / document.getElementById('drawing-canvas').height) * 100;
+		(mouse_pos.y / document.getElementById('#drawing-canvas').height) * 100;
 });
 
 function getMousePos(evt) {
